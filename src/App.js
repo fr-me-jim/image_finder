@@ -32,7 +32,7 @@ function App() {
 
       //move screen smoothly to top
       const jumbotron = document.querySelector('.jumbotron');
-      jumbotron.scrollIntoView('smooth', 'start');
+      jumbotron.scrollIntoView({behavioir: 'smooth', block: 'start'});
           
     };
 
