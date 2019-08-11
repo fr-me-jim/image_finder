@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchEngine from './components/SearchEngine';
+import ImagesList from './components/ImagesList';
 
 function App() {
 
@@ -19,7 +20,8 @@ function App() {
 
       const response = await fetch(url);
       const result = await response.json();
-      console.log(result);
+      
+      setImages(result.hits);
           
     };
 
@@ -38,7 +40,9 @@ function App() {
       </div>
 
       <div className="row justify-content-center">
-
+        <ImagesList 
+          images={images}
+        />
       </div>
     </div>
   );
