@@ -15,7 +15,7 @@ const Image = ({image}) => {
                     <p className="card-text text-light"> {views} Views </p>
                     <p className="card-text" >
                         { tags_alone.map(tag => (
-                            <span className="badge badge-light mx-1"> {tag} </span>
+                            <span key={image.id+Math.random()} className="badge badge-light mx-1"> {tag} </span>
                         )) }
                     </p>
                 </div>
