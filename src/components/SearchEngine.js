@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Error from './Error';
+
 
 const SearchEngine = () => {
 
@@ -18,7 +20,6 @@ const SearchEngine = () => {
 
         //send data to main component
         setError(false);
-        setCategory(category);
         
     }
 
@@ -45,6 +46,8 @@ const SearchEngine = () => {
                     />
                 </div>
             </div>
+
+            { error ? <Error message="Type a category to search by!" /> : null }
         </form>
     );
 }
