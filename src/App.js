@@ -7,6 +7,9 @@ function App() {
   //state
   const [ searchCategory, setSearchCategory ] = useState('');
   const [ images, setImages ] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ totalPages, setTotalPages ] = useState(1);
+
 
   useEffect(() => {
 
@@ -22,12 +25,41 @@ function App() {
       const result = await response.json();
       
       setImages(result.hits);
+
+      //calculate total pages
+      const total = Math.ceil( response.totalHits / imagesPerPage );
+      setTotalPages(total);
+
           
     };
 
     queryAPI();
 
   });
+
+  const handleClick = name => {
+    if ( name === 'previous' )  
+      previousPage();
+
+    else if ( name === 'next' )
+      nextPage();
+
+    else return;
+  }
+
+  const previousPage = () => {
+    let newPage = currentPage - 1;
+
+    //store in state
+    setCurrentPage(newPage);
+  }
+
+  const nextPage = () => {
+    let newPage = currentPage + 1;
+
+    //store in state
+    setCurrentPage(newPage);
+  }
 
   return (
     <div className="app container">
@@ -43,6 +75,19 @@ function App() {
         <ImagesList 
           images={images}
         />
+
+        {/* check wheather the buttons are useless or not */}
+        { ( currentPage === 1 || totalPages === 1 ) ? null :
+          <button  
+            name="previous" onClick={e => handleClick(e.target.name)} className="btn btn-light mr-2 mb-2"
+          >&laquo; Previous</button>
+        }
+        { ( currentPage === totalPages || totalPages === 1 ) ? null :
+          <button 
+            name="next" onClick={e => handleClick(e.target.name)} className="btn btn-light mr-2 mb-2"
+          >Next &raquo;</button>
+        }
+        
       </div>
     </div>
   );

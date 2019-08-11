@@ -1,11 +1,9 @@
 import React from 'react';
 
 const Image = ({image}) => {
-    console.log(image);
 
     const { largeImageURL, likes, previewURL, tags, views  } = image;
     const tags_alone = tags.split(',');
-    console.log(tags_alone);
 
     return (  
         <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
