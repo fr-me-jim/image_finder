@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Error from './Error';
 
 
-const SearchEngine = () => {
+const SearchEngine = ({setSearchCategory}) => {
 
     //state
     const [ category, setCategory ] = useState('');
@@ -20,7 +20,7 @@ const SearchEngine = () => {
 
         //send data to main component
         setError(false);
-        
+        setSearchCategory(category);
     }
 
     return (  
